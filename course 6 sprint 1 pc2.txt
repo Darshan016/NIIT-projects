@@ -1,0 +1,25 @@
+use carsales;
+create table customer(customerid int not null primary key, firstname varchar(40) not null, lastname varchar(40) not null, city varchar(40) not null, rating int not null, salesid int references salesperson(salesid));
+
+insert into customer values(2001,"hoffman","anny","london",100,1001);
+insert into customer values(2002,"giovanni","jenny","rome",200,1003);
+insert into customer values(2003,"liu","william","san jose",100,1002);
+insert into customer values(2004,"harry","grass","berlin",300,1002);
+insert into customer values(2005,"clemens","john","london",200,1001);
+insert into customer values(2006,"fanny","john","san jose",200,1005);
+insert into customer values(2007,"jonathan","bob","rome",300,1004);
+
+create table orders(orderid int not null primary key, amount int not null,orderdate date, customerid int references customer(customerid));
+insert into orders values(3001,123,'2020-02-01',2001);
+insert into orders values(3003,187,'2020-10-02',2007);
+insert into orders values(3002,100,'2000-07-30',2003);
+insert into orders values(3005,201,'2011-10-09',2007);
+insert into orders values(3009,145,'2012-10-10',2002);
+insert into orders values(3007,167,'2021-04-02',2002);
+insert into orders values(3008,189,'1999-03-02',2006);
+insert into orders values(3010,100,'2009-09-18',2004);	
+delete from orders where orderid=3008;
+delete from salesperson where commissionrate=0;
+update orders set amount=200 where amount=100;
+update salesperson set commissionrate=28 where commissionrate=26;
+update customer set rating=150 where rating=100;
